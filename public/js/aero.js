@@ -2,10 +2,26 @@ var aero = {
     //need to be more defensive here when made into a module
     host: document.location.origin,
 
-    saveRecord: function (ns, set, k, v) {
+    saveRecord: function (ns, set, k, v, callback) {
         // v = JSON.stringify(v);
-        $.post(this.host + "/" + ns + "/" + set + "/" + k, v, function (res) {
-            console.log(res);
+        $.post(this.host + "/" + ns + "/" + set + "/" + k, v, function (res, msg, obj) {
+
+        });
+
+        $.ajax({
+            url: this.host + "/" + ns + "/" + set + "/" + k,
+            type: 'POST',
+            data: v,
+            success: function(res, textStatus, xhr){
+                if(typeof callback === "function") {
+                    callback(xhr.status);
+                }
+            },
+            error: function(res, textStatus, xhr) {
+                if(typeof callback === "function") {
+                    callback(xhr.status, res);
+                }
+            }
         });
     },
 
@@ -14,14 +30,15 @@ var aero = {
         $.ajax({
             url: this.host + "/" + ns + "/" + set + "/" + k,
             type: 'GET',
-            success: function(res){
+            success: function(res, textStatus, xhr){
                 if(typeof callback === "function") {
-                    callback(res);
+                    callback(xhr.status, res);
                 }
             },
-            error: function(res, err, msg) {
-                if(res.status == 404) {
-                    alert("Not found");
+            error: function(res, textStatus, message) {
+                console.log(arguments);
+                if(typeof callback === "function") {
+                    callback(res.status, message);
                 }
             }
         });
@@ -61,13 +78,13 @@ var aero = {
     
     query: function (ns, set, opts, callback) {
         $.ajax({
-            url: this.host + "/query/" + ns + "/" + set + "/",
+            url: this.host + "/" + ns + "/" + set + "/",
             type: 'get',
             data: opts,
-            success: function(res) {
+            success: function(res, textStatus, xhr) {
                 console.log(res);
                 if(typeof callback === "function") {
-                    callback(res);
+                    callback(xhr.status, res);
                 }
             }
         });

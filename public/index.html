@@ -3,17 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Aerospike Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
-<addRecord></addRecord>
-<getRecord></getRecord>
-<createIndex></createIndex>
-<query></query>
+<nav class="navbar navbar-inverse bg-aero">
+    <a class="navbar-brand" href="#">
+        <img src="http://www.aerospike.com/assets/images/aerospike-logo.png" alt="">
+    </a>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+
+            <div class="component">
+                <addRecord></addRecord>
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <div class="component">
+                <getRecord></getRecord>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="component">
+                <createIndex></createIndex>
+            </div>
+        </div>
+
+    </div>
+
+
+    <query></query>
 
 
 
+
+</div>
+
+
+
+
+
+<!-- Normally I would bundle this using something like webpack -->
 <script src="js/libs/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 <script src="js/libs/riot.js"></script>
 <script src="js/aero.js"></script>
 <script src="js/dist/addRecord.js"></script>

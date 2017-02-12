@@ -1,39 +1,54 @@
 <addRecord>
     <form onsubmit="{postRecord}">
         <h2>Add Record</h2>
-        <div>
+
+        <div class="form-group">
             <label>Namespace</label>
-            <input type="text" placeholder="Namespace" ref="namespace" value="test" required/>
+            <input type="text" class="form-control" placeholder="Namespace" ref="namespace" value="" required/>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Set</label>
-            <input type="text" placeholder="Set" ref="set" value="sat" required/>
+            <input type="text" class="form-control" placeholder="Set" ref="set" value="" required/>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Key</label>
-            <input type="text" placeholder="Key" ref="key" value="jonny" required/>
+            <input type="text" class="form-control" placeholder="Key" ref="key" value="" required/>
         </div>
+
+
 
         <fieldset>
             <legend>Bins</legend>
 
-            <div each="{kvs}">
-                <div>
-                    <input type="text" ref="binKey" placeholder="Key">
-                    <input type="text" ref="binValue" placeholder="Value">
+            <div each="{kvs}" class="row">
+                <div class="col-6">
+                    <input type="text" class="form-control" ref="binKey" placeholder="Key">
+                </div>
+
+                <div class="col-6">
+                    <input type="text" class="form-control" ref="binValue" placeholder="Value">
                 </div>
             </div>
 
-            <button onclick="{addBin}" type="button">Add Bin</button>
+            <div class="addBin">
+                <button onclick="{removeBin}" type="button" class="btn btn-danger ">Remove Bin</button>
+                <button onclick="{addBin}" type="button" class="btn btn-primary ">Add Bin</button>
+            </div>
+
+
 
         </fieldset>
 
-        <button>Save</button>
+
+
+        <div class="commit text-right">
+            <button class="btn btn-success btn-lg">Save</button>
+        </div>
+
     </form>
 
-    <button onclick="{log}">log</button>
 
 
     <script>
@@ -51,6 +66,10 @@
             this.kvs.push({k: "", v: ""});
         };
 
+        this.removeBin = function () {
+            this.kvs.pop();
+        };
+
         this.postRecord = function(e) {
             e.preventDefault();
             var bins = this.combineBins();
@@ -61,7 +80,15 @@
                 this.refs.namespace.value,
                 this.refs.set.value,
                 this.refs.key.value,
-                bins
+                bins,
+                function(status, res) {
+                    if(status === 201) {
+                        alertify.success("Record added");
+                    } else {
+                        alertify.error("Could not save record")
+                        console.error("ERROR:", res);
+                    }
+                }
             );
         };
 

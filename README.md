@@ -3,15 +3,66 @@
 The aim of this project is to implement the Aerospike API and preform
 basic interactions with it.
 
-It will be considered complete when a user can get, set & delete, records
+It will be considered complete when a user can get, set & delete records
 create secondary indexes and preform basic queries.
 
+The project consists of 2 halves a "rest" API written in Node.js and web client to
+consume the API.
+
+##API
+
+NB. while Aerospike allows the omission of set, this API does not.
+
+**Read Record**
+
+```GET /:Namespace/:set/:key```
+
+Returns
+  - 200 OK - and JSON representation of the record
+  - 404 Not found
+  - 400 Bad request - There is probably something missing from your request
+  - 500 Server error
+
+**Write Record**
+
+```POST /:Namespace/:set/:key```
+
+Returns
+  - 201 Created 
+  - 400 Bad request - There is probably something missing from your request 
+  - 500 Server error
+  
+**Delete Record**
+
+```DELETE /:Namespace/:set/:key```
+
+Returns
+  - 200 OK - Deleted 
+  - 400 Bad request - There is probably something missing from your request 
+  - 500 Server error
+  
+  
+**Create Secondary Index**
+
+```POST /index/:Namespace/:set/:bin```
+
+Returns
+  - 200 OK - response body will be empty if successful (This is not ideal and will change)
+  
+**Query**
+
+```POST /index/:Namespace/:set/:bin```
+
+Returns
+  - 200 OK - This always returns 200 OK, again, not ideal, errors will be displayed as the result
+  
+   
 ##Technology choices
 
 **NODE** - This is out of pure comfort, I find it very easy to get
 something going quickly in Node
 
-**Riot.js** - This was down to our phonecall, this is my first outing
+**Riot.js** - This was down to our phone call, this is my first outing
 with riot, specifically to get to know it a little bit.
 
 
@@ -37,9 +88,9 @@ node index.js
 ```
 And the server should start running on host:9000
 
-##Easier Installation
+##Easier Option
 
-There is an install of this running on: [80.85.87.166:9000](http://80.85.87.166:9000), there is only the "test" namespace set up. At time of writing no time has been put into the UI, so it is best to inspect the console to see what is going on (UI will be finished by Monday the 13th). 
+There is an install of this running on: [80.85.87.166:9000](http://80.85.87.166:9000), there is only the "test" namespace set up. 
 
 ###License
 

@@ -19,27 +19,6 @@ app.use('/', express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.get("/query/:namespace/:set", function (req, res) {
-    var namespace = req.params.namespace,
-        set = req.params.set,
-        opts = null;
-
-    opts = req.query;
-
-    api.query(namespace, set, opts, function (err, result) {
-        // console.log(result);
-        if(err) {
-            res.send(err);
-        } else {
-            res.send(result);
-        }
-
-    })
-});
-
-
-
-
 
 //set
 app.post('/:namespace/:set/:key', function (req, res) {
@@ -79,7 +58,7 @@ app.post('/:namespace/:set/:key', function (req, res) {
     }
 });
 
-
+//get
 app.get('/:namespace/:set/:key', function (req, res) {
     var namespace = req.params.namespace,
         set = req.params.set,
@@ -160,15 +139,31 @@ app.post('/index/:namespace/:set/:bin',  function (req, res) {
     }
 
     type = opts.type;
-    console.log(type, opts);
     api.createIndex(namespace, set, bin, type, function (err) {
-        console.log(arguments)
+        console.log(arguments);
 
         res.send(err);
     })
 });
 
+//query
+app.get("/:namespace/:set", function (req, res) {
+    var namespace = req.params.namespace,
+        set = req.params.set,
+        opts = null;
 
+    opts = req.query;
+
+    api.query(namespace, set, opts, function (err, result) {
+        // console.log(result);
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(result);
+        }
+
+    })
+});
 
 
 

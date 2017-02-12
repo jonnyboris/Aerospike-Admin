@@ -1,37 +1,37 @@
 <createIndex>
     <form onsubmit="{createIndex}">
         <h2>Create Index</h2>
-        <div>
+        <div class="form-group">
             <label>Namespace</label>
-            <input type="text" placeholder="Namespace" ref="namespace" required/>
+            <input type="text" class="form-control" placeholder="Namespace" ref="namespace" required/>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Set</label>
-            <input type="text" placeholder="Set" ref="set" required/>
+            <input type="text" class="form-control" placeholder="Set" ref="set" required/>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Bin</label>
-            <input type="text" placeholder="Bin" ref="bin" required/>
+            <input type="text" class="form-control" placeholder="Bin" ref="bin" required/>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Type</label>
-            <select ref="type">
+            <select ref="type" class="form-control">
                 <option value="NUMERIC">Numeric</option>
-                <option value="STRING">STRING</option>
+                <option value="STRING">String</option>
             </select>
         </div>
 
+        <div class="text-right">
+            <button class="btn btn-success btn-lg">Create</button>
+        </div>
 
-        <button>Create</button>
 
     </form>
 
     <script>
-        this.result = " ";
-
         this.createIndex = function(e) {
             e.preventDefault();
             console.log(this.refs);
@@ -42,9 +42,11 @@
                     this.refs.bin.value,
                     this.refs.type.value,
                     function(res) {
-                        this.result = JSON.stringify(res);
-                        this.update();
-                        console.log(this);
+                        if(res == "") {
+                            alertify.success("Index created");
+                        } else {
+                            alertify.error("Could not create index " + res);
+                        }
                     }.bind(this)
 
             );
