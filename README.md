@@ -3,7 +3,7 @@
 The aim of this project is to implement the Aerospike API and preform
 basic interactions with it.
 
-It will be considered complete when a user can get, set & delete, records,
+It will be considered complete when a user can get, set & delete, records
 create secondary indexes and preform basic queries.
 
 ##Technology choices
@@ -22,6 +22,24 @@ so feature coverage is prioritised. As this is an investigation, I
 have not written any unit tests, furthermore I shall try to refactor
 the codebase as much as possible, however learning is the aim here. 
 
+
+##Installation
+
+You can run a copy of this locally, however you will need aerospike running on the default port on your machine. After you have got that running. You will need to run 
+``` bash
+npm i
+```
+In the root of the project, this will install the dependancies. You will then need to edit the host variable (No time for a config yet) in index.js to get the server to listen on your localmachine.
+
+You can then run 
+``` bash
+node index.js
+```
+And the server should start running on host:9000
+
+##Easier Installation
+
+There is an install of this running on: [80.85.87.166:9000](http://80.85.87.166:9000), there is only the "test" namespace set up. At time of writing no time has been put into the UI, so it is best to inspect the console to see what is going on (UI will be finished by Monday the 13th). 
 
 ###License
 
