@@ -1,2 +1,3 @@
-riot.mount('*');
+
 console.log("Running");
+riot.mount('*');

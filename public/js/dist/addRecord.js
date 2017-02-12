@@ -1,42 +1,4 @@
-<addRecord>
-    <form onsubmit="{postRecord}">
-        <h2>Add Record</h2>
-        <div>
-            <label>Namespace</label>
-            <input type="text" placeholder="Namespace" ref="namespace" value="test" required/>
-        </div>
-
-        <div>
-            <label>Set</label>
-            <input type="text" placeholder="Set" ref="set" value="sat" required/>
-        </div>
-
-        <div>
-            <label>Key</label>
-            <input type="text" placeholder="Key" ref="key" value="jonny" required/>
-        </div>
-
-        <fieldset>
-            <legend>Bins</legend>
-
-            <div each="{kvs}">
-                <div>
-                    <input type="text" ref="binKey" placeholder="Key">
-                    <input type="text" ref="binValue" placeholder="Value">
-                </div>
-            </div>
-
-            <button onclick="{addBin}" type="button">Add Bin</button>
-
-        </fieldset>
-
-        <button>Save</button>
-    </form>
-
-    <button onclick="{log}">log</button>
-
-
-    <script>
+riot.tag2('addrecord', '<form onsubmit="{postRecord}"> <h2>Add Record</h2> <div> <label>Namespace</label> <input type="text" placeholder="Namespace" ref="namespace" value="test" required> </div> <div> <label>Set</label> <input type="text" placeholder="Set" ref="set" value="sat" required> </div> <div> <label>Key</label> <input type="text" placeholder="Key" ref="key" value="jonny" required> </div> <fieldset> <legend>Bins</legend> <div each="{kvs}"> <div> <input type="text" ref="binKey" placeholder="Key"> <input type="text" ref="binValue" placeholder="Value"> </div> </div> <button onclick="{addBin}" type="button">Add Bin</button> </fieldset> <button>Save</button> </form> <button onclick="{log}">log</button>', '', '', function(opts) {
 
         this.kvs = [
             {k: "", v: ""}
@@ -56,7 +18,6 @@
             var bins = this.combineBins();
             console.log(bins);
 
-
             aero.saveRecord(
                 this.refs.namespace.value,
                 this.refs.set.value,
@@ -64,7 +25,6 @@
                 bins
             );
         };
-
 
         this.combineBins = function() {
             var len = 0,
@@ -82,12 +42,7 @@
                 bins[k.value] = v.value;
             }
 
-
-
             return bins;
         }
 
-    </script>
-
-
-</addRecord>
+});

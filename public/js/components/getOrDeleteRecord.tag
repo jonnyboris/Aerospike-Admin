@@ -17,15 +17,16 @@
         </div>
 
 
-        <button>Save</button>
+        <button>Get</button>
+        <button type="button" onclick="{deleteRecord}">Delete</button>
     </form>
 
     <p>Result:</p>
     <textarea>{result}</textarea>
 
     <script>
-        this.result = "";
-
+        this.result = " ";
+        //delete
         this.getRecord = function(e) {
             e.preventDefault();
             console.log(this.refs);
@@ -42,6 +43,20 @@
 
             );
         };
+
+        this.deleteRecord = function () {
+
+            if(window.confirm("Delete record")) {
+                aero.deleteRecord(
+                    this.refs.namespace.value,
+                    this.refs.set.value,
+                    this.refs.key.value,
+                    function(res) {
+                        alert("deleted");
+                    }.bind(this)
+                );
+            }
+        }
 
     </script>
 
