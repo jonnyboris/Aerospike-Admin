@@ -3,7 +3,7 @@
 The aim of this project is to implement the Aerospike API and preform
 basic interactions with it.
 
-It will be considered complete when a user can get, set & delete, records,
+It will be considered complete when a user can get, set & delete records,
 create secondary indexes and preform basic queries.
 
 ##Technology choices
