@@ -55,16 +55,6 @@ Returns
 
 Returns
   - 200 OK - This always returns 200 OK, again, not ideal, errors will be displayed as the result
-  
-   
-##Technology choices
-
-**NODE** - This is out of pure comfort, I find it very easy to get
-something going quickly in Node
-
-**Riot.js** - This was down to our phone call, this is my first outing
-with riot, specifically to get to know it a little bit.
-
 
 ##Project limitations
 
@@ -88,9 +78,6 @@ node index.js
 ```
 And the server should start running on host:9000
 
-##Easier Option
-
-There is an install of this running on: [80.85.87.166:9000](http://80.85.87.166:9000), there is only the "test" namespace set up. 
 
 ###License
 
